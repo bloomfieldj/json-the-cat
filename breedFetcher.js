@@ -1,7 +1,6 @@
 const request = require('request');
-let breed = process.argv[2];
 
-const fetch = function (){
+const fetch = function (breed){
   
   const data = request("https://api.thecatapi.com/v1/breeds/search?q=" + breed, (error, response, body) => {
   console.log('error:', error); // Print the error if one occurred
@@ -10,14 +9,12 @@ const fetch = function (){
   const data = JSON.parse(body);
   console.log(data['0'].description, err => {
     if (err) {
-      console.error(err);
+      console.error(null);
       return
-    }
+      }
+    })
   })
-  
-  })
-
   return data;
 }
 
-fetch();
+module.exports = fetch ;
